@@ -3,9 +3,8 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Badge from '@mui/material/Badge';
-import MailIcon from '@mui/icons-material/Mail';
 
-function Header(){
+const Header = () => {
     return(
         <>
         <Navbar bg="dark" variant="dark">
