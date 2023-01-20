@@ -76,10 +76,10 @@ const CardsDetails = () => {
                       <strong>Dishes</strong>: {element.address}
                     </p>
                     <p>
-                      <strong>Total</strong>: ₹ {element.rname}
+                      <strong>Total</strong>: ₹ {element.price * element.qnty}
                     </p>
                     <div className="mt-5 d-flex justify-content-between align-items-center" style={{width:100,cursor:"pointer",background:"#ddd",color:"#111"}}>
-                      <span style={{fontSize:24}} onClick={()=>remove(element)}>-</span>
+                      <span style={{fontSize:24}} onClick={element.qnty <= 1 ? ()=>dlt(element.id) : ()=>remove(element)}>-</span>
                       <span style={{fontSize:22}}>{element.qnty}</span>
                       <span style={{fontSize:24}} onClick={() =>send(element)}>+</span>
                     </div>

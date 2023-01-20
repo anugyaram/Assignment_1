@@ -23,7 +23,7 @@ export const cartreducer = (state = INIT_STATE, action) => {
       const data = state.carts.filter((ele) => ele.id !== action.payload);
       return {
         ...state,
-        carts: data,
+        carts: data
       };
 
     case "RMV_ONE":
@@ -33,15 +33,20 @@ export const cartreducer = (state = INIT_STATE, action) => {
 
       if (state.carts[ItemIndex_dec].qnty >= 1) {
         const dltitems = (state.carts[ItemIndex_dec].qnty -= 1);
-        //console.log([...state.carts, dltitems]);
+        console.log([...state.carts, dltitems]);
 
         return {
           ...state,
           carts: [...state.carts],
         };
-      } else if (state.carts[ItemIndex_dec].qnty === 1) {
-        const data = state.carts.filter((el) => el.id !== action.payload);
-      }
+      } else if(state.carts[ItemIndex_dec].qnty === 1 ){
+        const data = state.carts.filter((el)=>el.id !== action.payload);
+
+        return {
+            ...state,
+            carts:data
+        }
+    }
     default:
       return state;
   }
