@@ -5,6 +5,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Badge from "@mui/material/Badge";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import Table from "react-bootstrap/esm/Table";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -58,7 +59,45 @@ const Header = () => {
             "aria-labelledby": "basic-button",
           }}
         >
-          <div
+          {
+            getdata.length ? 
+            <div className="card-details" style={{width:"24rem",padding:10}}>
+              <Table>
+                <thead>
+                  <tr>
+                    <th>Photos</th>
+                    <th>Restaurant</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    getdata.map((e) => {
+                      return (
+                        <>
+                        <tr>
+                          <td>
+                            <img src={e.imgdata} style={{width:"5rem",height:"5rem"}}/>
+                          </td>
+                          <td>
+                            <p>{e.rname}</p>
+                            <p>Price: ₹ {e.price}</p>
+                            <p>Quantity: {e.qnty}</p>
+                            <p style={{color:"red",fontSize:20,cursor:"pointer"}}>
+                              <i className="fas fa-trash smalltrash"></i>
+                            </p>
+                          </td>
+                          <td className="mt-5" style={{color:"red",fontSize:20,cursor:"pointer"}}>
+                            <i className="fas fa-trash largetrash"></i>
+                          </td>
+                        </tr>
+                        </>
+                      )
+                    })
+                  }
+                </tbody>
+              </Table>
+            </div>:
+            <div
             className="card-details d-flex justify-content-center align-items-center"
             style={{ width: "24rem", padding: 10, position: "relative" }}
           >
@@ -81,6 +120,8 @@ const Header = () => {
               style={{ width: "5rem", padding: 10 }}
             />
           </div>
+          }
+          
         </Menu>
       </Navbar>
     </>
