@@ -1,7 +1,8 @@
 import React, { useEffect,useState } from "react";
 import Table from "react-bootstrap/Table";
-import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { DTL } from '../redux/actions/action';
 
 const CardsDetails = () => {
 
@@ -10,6 +11,10 @@ const CardsDetails = () => {
 
   const {id} = useParams();
   console.log(id)
+
+  const history = useNavigate();
+
+  const dispatch = useDispatch();
 
   const getdata = useSelector((state) => state.cartreducer.carts)
   //console.log(getdata);
@@ -24,6 +29,11 @@ const CardsDetails = () => {
   useEffect(() => {
     compare();
   },[id])
+
+  const dlt = (id) => {
+    dispatch(DTL(id))
+    history("/");
+  }
 
   return (
     <>
@@ -65,7 +75,7 @@ const CardsDetails = () => {
                       <strong>Order Review</strong>: {element.somedata}
                     </p>
                     <p>
-                      <strong>Remove</strong> <i class="fa-solid fa-trash" style={{color:"red",fontSize:20,cursor:"pointer"}}></i>
+                      <strong>Remove</strong> <i class="fa-solid fa-trash" style={{color:"red",fontSize:20,cursor:"pointer"}} onClick={()=>dlt(element.id)}></i>
                     </p>
                   </td>
                 </tr>
