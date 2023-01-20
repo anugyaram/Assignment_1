@@ -1,7 +1,30 @@
-import React from "react";
+import React, { useEffect,useState } from "react";
 import Table from "react-bootstrap/Table";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const CardsDetails = () => {
+
+  const [data,setData] = useState([]); 
+  //console.log(data)
+
+  const {id} = useParams();
+  console.log(id)
+
+  const getdata = useSelector((state) => state.cartreducer.carts)
+  //console.log(getdata);
+
+  const compare = () => {
+    let comparedata = getdata.filter((e) => {
+      return e.id == id
+    });
+    setData(comparedata);
+  }
+
+  useEffect(() => {
+    compare();
+  },[id])
+
   return (
     <>
       <div className="container mt-2">
@@ -9,8 +32,12 @@ const CardsDetails = () => {
 
         <section className="container mt-3">
           <div className="item_details">
-            <div className="items_img">
-              <img src="https://b.zmtcdn.com/data/pictures/9/18857339/8f53919f1175c08cf0f0371b73704f9b_o2_featured_v2.jpg?output-format=webp" alt=""/>
+            {
+              data.map((element) => {
+                return(
+                  <>
+<div className="items_img">
+              <img src={element.imgdata} alt=""/>
             </div>
 
             <div className="details">
@@ -18,24 +45,24 @@ const CardsDetails = () => {
                 <tr>
                   <td>
                     <p>
-                      <strong>Restaurant</strong>: Massala Theoryy
+                      <strong>Restaurant</strong>: {element.rname}
                     </p>
                     <p>
-                      <strong>Price</strong>: ₹ 350
+                      <strong>Price</strong>: ₹ {element.price}
                     </p>
                     <p>
-                      <strong>Dishes</strong>: Massala Theoryy
+                      <strong>Dishes</strong>: {element.address}
                     </p>
                     <p>
-                      <strong>Total</strong>: ₹ 350
+                      <strong>Total</strong>: ₹ {element.rname}
                     </p>
                   </td>
                   <td>
                   <p>
-                      <strong>Rating</strong>: <span style={{background:"green",color:"#fff",padding:"2px 5px",borderRadius:"5px"}}> 3.5 ★</span>
+                      <strong>Rating</strong>: <span style={{background:"green",color:"#fff",padding:"2px 5px",borderRadius:"5px"}}> {element.rating} ★</span>
                     </p>
                     <p>
-                      <strong>Order Review</strong>: 1175 + order placed from here recently
+                      <strong>Order Review</strong>: {element.somedata}
                     </p>
                     <p>
                       <strong>Remove</strong> <i class="fa-solid fa-trash" style={{color:"red",fontSize:20,cursor:"pointer"}}></i>
@@ -44,6 +71,11 @@ const CardsDetails = () => {
                 </tr>
               </Table>
             </div>
+                  </>
+                )
+              })
+            }
+            
           </div>
         </section>
       </div>

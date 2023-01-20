@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 
 const Header = () => {
   const getdata = useSelector((state) => state.cartreducer.carts)
-  console.log(getdata);
+  //console.log(getdata);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -76,7 +76,9 @@ const Header = () => {
                         <>
                         <tr>
                           <td>
-                            <img src={e.imgdata} style={{width:"5rem",height:"5rem"}}/>
+                            <NavLink to={`/cart/${e.id}`}>
+                              <img src={e.imgdata} style={{width:"5rem",height:"5rem"}}/>
+                            </NavLink>
                           </td>
                           <td>
                             <p>{e.rname}</p>
@@ -94,6 +96,7 @@ const Header = () => {
                       )
                     })
                   }
+                  <p className="text-center">Total: ₹ 300</p>
                 </tbody>
               </Table>
             </div>:
