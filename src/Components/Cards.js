@@ -7,10 +7,19 @@ import Typography from "@mui/material/Typography";
 import "./style.css";
 
 import CardData from "./CardData";
+import { useDispatch } from "react-redux";
+import { ADD } from '../redux/actions/action';
 
 const Cards = () => {
   const [data, setData] = useState(CardData);
-  console.log(data);
+
+  const dispatch = useDispatch();
+
+  const send = (e) => {
+    //console.log(e);
+    dispatch(ADD(e));
+
+  }
 
   return (
     <div className="container mt-3">
@@ -39,9 +48,15 @@ const Cards = () => {
                     Price: ₹ {element.price}
                   </Typography>
                   <div className="button_div d-flex justify-content-center">
-                    <Button variant="contained" className="col-lg-12 mt-2">Add to Cart</Button>
+                    <Button
+                      variant="contained"
+                      className="col-lg-12 mt-2"
+                      onClick={()=> send(element)}
+                    >
+                      Add to Cart
+                    </Button>
                   </div>
-                </CardContent>   
+                </CardContent>
               </Card>
             </>
           );

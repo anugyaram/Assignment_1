@@ -1,5 +1,5 @@
 const INIT_STATE = {
-  carts: [],
+  carts: []
 };
 
 export const cartreducer = (state = INIT_STATE, action) => {
@@ -7,10 +7,10 @@ export const cartreducer = (state = INIT_STATE, action) => {
     case "ADD_CART":
       return {
         ...state,
-        carts: [...state.carts, action.payload],
-      };
+        carts: [...state.carts, action.payload]
+      }
 
     default:
-      return state;
+      return state
   }
-};
+}
