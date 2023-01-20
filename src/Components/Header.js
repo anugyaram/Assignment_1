@@ -7,11 +7,14 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Table from "react-bootstrap/esm/Table";
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { DTL } from '../redux/actions/action';
 
 const Header = () => {
   const getdata = useSelector((state) => state.cartreducer.carts)
   //console.log(getdata);
+
+  const dispatch = useDispatch();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -21,6 +24,10 @@ const Header = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const dlt = (id) => {
+    dispatch(DTL(id))
+  }
 
   return (
     <>
@@ -76,7 +83,7 @@ const Header = () => {
                         <>
                         <tr>
                           <td>
-                            <NavLink to={`/cart/${e.id}`}>
+                            <NavLink to={`/cart/${e.id}`} onClick={handleClose}>
                               <img src={e.imgdata} style={{width:"5rem",height:"5rem"}}/>
                             </NavLink>
                           </td>
@@ -84,11 +91,11 @@ const Header = () => {
                             <p>{e.rname}</p>
                             <p>Price: ₹ {e.price}</p>
                             <p>Quantity: {e.qnty}</p>
-                            <p style={{color:"red",fontSize:20,cursor:"pointer"}}>
+                            <p style={{color:"red",fontSize:20,cursor:"pointer"}} onClick={()=>dlt(e.id)}>
                               <i className="fas fa-trash smalltrash"></i>
                             </p>
                           </td>
-                          <td className="mt-5" style={{color:"red",fontSize:20,cursor:"pointer"}}>
+                          <td className="mt-5" style={{color:"red",fontSize:20,cursor:"pointer"}} onClick={()=>dlt(e.id)}>
                             <i className="fas fa-trash largetrash"></i>
                           </td>
                         </tr>
