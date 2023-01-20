@@ -23,7 +23,7 @@ const Cards = () => {
 
   return (
     <div className="container mt-3">
-      <h2 className="text-center">Add to Cart</h2>
+      <h2 className="text-center">Food Items</h2>
 
       <div className="row d-flex align-items-center justify-content-center">
         {data.map((element, id) => {

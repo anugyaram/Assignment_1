@@ -50,7 +50,7 @@ const CardsDetails = () => {
   return (
     <>
       <div className="container mt-2">
-        <h2 className="text-center">Item Details Page</h2>
+        <h2 className="text-center">Item Details</h2>
 
         <section className="container mt-3">
           <div className="item_details">

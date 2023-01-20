@@ -4,7 +4,6 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Badge from "@mui/material/Badge";
 import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
 import Table from "react-bootstrap/esm/Table";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -34,7 +33,7 @@ const Header = () => {
 
   const total = () => {
     let price = 0;
-    getdata.map((ele, k) => {
+    getdata.map((ele) => {
       price = ele.price * ele.qnty + price;
     });
     setPrice(price);
@@ -49,12 +48,9 @@ const Header = () => {
       <Navbar bg="dark" variant="dark" style={{ height: "60px" }}>
         <Container>
           <NavLink to="/" className="text-decoration-none text-light mx-3">
-            Add to Cart
+            Home
           </NavLink>
           <Nav className="me-auto">
-            <NavLink to="/cart" className="text-decoration-none text-light">
-              Home
-            </NavLink>
           </Nav>
 
           <Badge
