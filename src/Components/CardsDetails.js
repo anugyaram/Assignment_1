@@ -2,7 +2,7 @@ import React, { useEffect,useState } from "react";
 import Table from "react-bootstrap/Table";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { DTL } from '../redux/actions/action';
+import { DTL,ADD,REM } from '../redux/actions/action';
 
 const CardsDetails = () => {
 
@@ -30,9 +30,21 @@ const CardsDetails = () => {
     compare();
   },[id])
 
+  //add date
+  const send = (e) => {
+    //console.log(e);
+    dispatch(ADD(e));
+
+  }
+
   const dlt = (id) => {
     dispatch(DTL(id))
     history("/");
+  }
+
+  //remove one
+  const remove = (item) =>{
+    dispatch(REM(item))
   }
 
   return (
@@ -66,6 +78,11 @@ const CardsDetails = () => {
                     <p>
                       <strong>Total</strong>: ₹ {element.rname}
                     </p>
+                    <div className="mt-5 d-flex justify-content-between align-items-center" style={{width:100,cursor:"pointer",background:"#ddd",color:"#111"}}>
+                      <span style={{fontSize:24}} onClick={()=>remove(element)}>-</span>
+                      <span style={{fontSize:22}}>{element.qnty}</span>
+                      <span style={{fontSize:24}} onClick={() =>send(element)}>+</span>
+                    </div>
                   </td>
                   <td>
                   <p>

@@ -14,3 +14,12 @@ export const DTL = (id) =>{
 
     }
 }
+
+// remove individual item
+
+export const REM = (item) => {
+    return {
+        type: "RMV_ONE",
+        payload: item
+    }
+}
